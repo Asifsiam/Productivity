@@ -7,19 +7,18 @@
     "icon": "./assets/images/icon.png",
     "scheme": "productivityapp",
     "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
     "ios": {
       "icon": "./assets/images/icon.png",
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.productivity.app"
     },
     "android": {
       "package": "com.productivity.app",
       "adaptiveIcon": {
-        "backgroundColor": "#121212",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
-      },
-      "predictiveBackGestureEnabled": false
+        "backgroundColor": "#0A0A0A"
+      }
     },
     "web": {
       "output": "static",
@@ -30,7 +29,7 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#121212",
+          "backgroundColor": "#0A0A0A",
           "android": {
             "image": "./assets/images/splash-icon.png",
             "imageWidth": 76
@@ -41,16 +40,13 @@
         "expo-notifications",
         {
           "icon": "./assets/images/icon.png",
-          "color": "#6C8EFF"
+          "color": "#7C6EFA"
         }
       ],
       "@react-native-community/datetimepicker"
     ],
     "experiments": {
       "typedRoutes": true
-    },
-    "extra": {
-      "router": {}
     }
   }
 }
