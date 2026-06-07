@@ -4,13 +4,12 @@ export interface Supplement {
   dose: string;
   notes: string;
   scheduleType: 'daily' | 'specific_days' | 'cycle';
-  scheduleDays?: number[]; // 0=Sun..6=Sat for specific_days
-  cycleOn?: number;  // for cycle type
+  scheduleDays?: number[]; // 0=Sun..6=Sat
+  cycleOn?: number;
   cycleOff?: number;
-  cycleStartDate?: string; // ISO date
+  cycleStartDate?: string;
   reminderTime?: string; // "HH:MM"
   history: { date: string; status: 'taken' | 'skipped' }[];
-  streak: number;
   createdAt: string;
 }
 
@@ -34,16 +33,14 @@ export interface Todo {
 
 export interface HoursEntry {
   id: string;
-  date: string; // "YYYY-MM-DD"
-  clockIn: string; // "HH:MM"
-  clockOut: string; // "HH:MM"
-  lunchMinutes: number;
+  date: string;      // "YYYY-MM-DD"
+  clockIn: string;   // "HH:MM"
+  clockOut: string;  // "HH:MM"
+  lunchAllowance: number; // ৳ amount added to earnings
   hoursWorked: number;
   earnings: number;
 }
 
 export interface HoursSettings {
   hourlyRate: number;
-  defaultLunchMinutes: number;
-  lunchEnabled: boolean;
 }

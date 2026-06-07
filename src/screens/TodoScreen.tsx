@@ -168,7 +168,7 @@ export function TodoScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.bg },
   header: { paddingHorizontal: 16, paddingTop: 8, paddingBottom: 12 },
-  headerTitle: { color: Colors.textPrimary, fontSize: 26, fontWeight: '700' },
+  headerTitle: { color: Colors.textPrimary, fontSize: 28, fontWeight: '800', letterSpacing: -0.5 },
   headerSub: { color: Colors.textSecondary, fontSize: 14, marginTop: 2 },
   listContent: { padding: 16, paddingBottom: 100 },
   sectionHeader: {
