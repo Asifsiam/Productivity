@@ -68,7 +68,8 @@ export function BottomSheet({ visible, onClose, title, children }: BottomSheetPr
     >
       <KeyboardAvoidingView
         style={styles.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={0}
       >
         <TouchableWithoutFeedback onPress={onClose}>
           <Animated.View style={[styles.overlay, { opacity }]} />

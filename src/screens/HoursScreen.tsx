@@ -222,6 +222,15 @@ export function HoursScreen() {
               <Text style={styles.miniDate}>{format(parseISO(entry.date), 'EEE, MMM d')}</Text>
               <Text style={styles.miniHours}>{entry.hoursWorked.toFixed(2)}h</Text>
               <Text style={styles.miniEarnings}>৳{entry.earnings.toFixed(0)}</Text>
+              <TouchableOpacity
+                onPress={() => Alert.alert('Delete Entry', 'Delete this entry?', [
+                  { text: 'Cancel', style: 'cancel' },
+                  { text: 'Delete', style: 'destructive', onPress: () => removeEntry(entry.id) },
+                ])}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              >
+                <Ionicons name="trash-outline" size={16} color={Colors.danger} />
+              </TouchableOpacity>
             </View>
           ))
         )}
@@ -263,6 +272,15 @@ export function HoursScreen() {
               <Text style={styles.miniDate}>{format(parseISO(entry.date), 'EEE, MMM d')}</Text>
               <Text style={styles.miniHours}>{entry.hoursWorked.toFixed(2)}h</Text>
               <Text style={styles.miniEarnings}>৳{entry.earnings.toFixed(0)}</Text>
+              <TouchableOpacity
+                onPress={() => Alert.alert('Delete Entry', 'Delete this entry?', [
+                  { text: 'Cancel', style: 'cancel' },
+                  { text: 'Delete', style: 'destructive', onPress: () => removeEntry(entry.id) },
+                ])}
+                hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              >
+                <Ionicons name="trash-outline" size={16} color={Colors.danger} />
+              </TouchableOpacity>
             </View>
           ))
         )}

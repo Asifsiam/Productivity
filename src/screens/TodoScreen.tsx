@@ -47,11 +47,7 @@ export function TodoScreen() {
     const isSkipped = item.status === 'skipped';
 
     return (
-      <TouchableOpacity
-        style={[styles.card, isPending && styles.cardPending]}
-        onLongPress={() => handleDelete(item)}
-        activeOpacity={0.8}
-      >
+      <View style={[styles.card, isPending && styles.cardPending]}>
         <View style={styles.cardInner}>
           {isDone && (
             <Ionicons name="checkmark-circle" size={20} color={Colors.success} style={styles.statusIcon} />
@@ -70,6 +66,9 @@ export function TodoScreen() {
               {format(new Date(item.createdAt), 'MMM d, h:mm a')}
             </Text>
           </View>
+          <TouchableOpacity onPress={() => handleDelete(item)} style={styles.deleteIcon} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+            <Ionicons name="trash-outline" size={18} color={Colors.danger} />
+          </TouchableOpacity>
         </View>
         {isPending && (
           <View style={styles.actions}>
@@ -87,7 +86,7 @@ export function TodoScreen() {
             </TouchableOpacity>
           </View>
         )}
-      </TouchableOpacity>
+      </View>
     );
   };
 
@@ -195,6 +194,7 @@ const styles = StyleSheet.create({
   },
   cardInner: { flexDirection: 'row', alignItems: 'flex-start' },
   statusIcon: { marginRight: 8, marginTop: 2 },
+  deleteIcon: { padding: 4, marginLeft: 8, marginTop: 1 },
   todoText: { flex: 1 },
   todoLabel: { color: Colors.textPrimary, fontSize: 15, lineHeight: 22 },
   todoLabelDone: {

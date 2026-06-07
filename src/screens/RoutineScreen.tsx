@@ -177,18 +177,21 @@ export function RoutineScreen() {
               const durStr = dh > 0 ? `${dh}h${dm > 0 ? ` ${dm}m` : ''}` : `${dm}m`;
 
               return (
-                <TouchableOpacity
+                <View
                   key={block.id}
                   style={[
                     styles.block,
                     { top, height, backgroundColor: block.color + 'CC', borderLeftColor: block.color },
                   ]}
-                  onPress={() => handleDeleteBlock(block)}
-                  activeOpacity={0.8}
                 >
-                  <Text style={styles.blockLabel} numberOfLines={1}>{block.label}</Text>
-                  <Text style={styles.blockDur}>{durStr}</Text>
-                </TouchableOpacity>
+                  <View style={styles.blockContent}>
+                    <Text style={styles.blockLabel} numberOfLines={1}>{block.label}</Text>
+                    <Text style={styles.blockDur}>{durStr}</Text>
+                  </View>
+                  <TouchableOpacity onPress={() => handleDeleteBlock(block)} style={styles.blockDelete} hitSlop={{ top: 4, bottom: 4, left: 4, right: 4 }}>
+                    <Text style={{ fontSize: 13 }}>🗑</Text>
+                  </TouchableOpacity>
+                </View>
               );
             })}
           </View>
@@ -321,7 +324,11 @@ const styles = StyleSheet.create({
     borderLeftWidth: 3,
     padding: 4,
     overflow: 'hidden',
+    flexDirection: 'row',
+    alignItems: 'flex-start',
   },
+  blockContent: { flex: 1 },
+  blockDelete: { padding: 2, alignSelf: 'flex-start' },
   blockLabel: { color: '#fff', fontSize: 12, fontWeight: '600' },
   blockDur: { color: 'rgba(255,255,255,0.7)', fontSize: 10 },
   emptyTimeline: { alignItems: 'center', paddingTop: 40 },

@@ -36,7 +36,7 @@ function ScheduleChip({ type }: { type: string }) {
 }
 
 export function SupplementsScreen() {
-  const { supplements, loading, addSupplement, recordAction, getTodayStatus, takenTodayCount } = useSupplements();
+  const { supplements, loading, addSupplement, removeSupplement, recordAction, getTodayStatus, takenTodayCount } = useSupplements();
   const [sheetVisible, setSheetVisible] = useState(false);
 
   // Form state
@@ -110,6 +110,13 @@ export function SupplementsScreen() {
     );
   };
 
+  const handleDelete = (item: Supplement) => {
+    Alert.alert('Delete Supplement', `Delete "${item.name}"?`, [
+      { text: 'Cancel', style: 'cancel' },
+      { text: 'Delete', style: 'destructive', onPress: () => removeSupplement(item.id) },
+    ]);
+  };
+
   const renderSupplement = ({ item }: { item: Supplement }) => {
     const todayStatus = getTodayStatus(item);
     const dot = SCHEDULE_COLORS[item.scheduleType];
@@ -123,6 +130,9 @@ export function SupplementsScreen() {
             <Text style={styles.suppSub}>{item.dose}{item.notes ? ` · ${item.notes}` : ''}</Text>
           </View>
           <ScheduleChip type={item.scheduleType} />
+          <TouchableOpacity onPress={() => handleDelete(item)} style={styles.deleteIcon} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+            <Text style={{ fontSize: 16 }}>🗑</Text>
+          </TouchableOpacity>
         </View>
         {item.streak > 0 && (
           <Text style={styles.streak}>🔥 {item.streak} day streak</Text>
@@ -311,7 +321,8 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 12,
   },
-  cardTop: { flexDirection: 'row', alignItems: 'center' },
+  cardTop: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  deleteIcon: { padding: 4 },
   dot: { width: 10, height: 10, borderRadius: 5, marginRight: 10, marginTop: 2 },
   cardInfo: { flex: 1 },
   suppName: { color: Colors.textPrimary, fontSize: 16, fontWeight: '600' },
