@@ -3,6 +3,7 @@ import { useStorage } from './useStorage';
 import { STORAGE_KEYS } from '@/constants/storage';
 import type { Supplement } from '@/types';
 import { format } from 'date-fns';
+import { scheduleSupplementReminder, cancelSupplementReminder } from '@/utils/notifications';
 
 export function useSupplements() {
   const { data: supplements, save, loading } = useStorage<Supplement[]>(STORAGE_KEYS.SUPPLEMENTS, []);
@@ -11,10 +12,12 @@ export function useSupplements() {
 
   const addSupplement = useCallback(async (supplement: Supplement) => {
     await save([...supplements, supplement]);
+    await scheduleSupplementReminder(supplement);
   }, [supplements, save]);
 
   const removeSupplement = useCallback(async (id: string) => {
     await save(supplements.filter(s => s.id !== id));
+    await cancelSupplementReminder(id);
   }, [supplements, save]);
 
   const recordAction = useCallback(async (id: string, status: 'taken' | 'skipped') => {
